@@ -1,6 +1,7 @@
 <template>
 <v-app-bar
     flat
+    max-height="64px"
 >
    <v-btn
    x-large

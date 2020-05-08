@@ -2,7 +2,7 @@
 <v-img
     :src="heroImage"
     height="100vh"
-    position="center left"
+    position="center top"
 >
 </v-img>
 </template>
