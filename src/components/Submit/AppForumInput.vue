@@ -2,14 +2,14 @@
 <v-row>
     <v-col cols="6">
         <v-text-field
-            label="Name"
-            v-model="forum.author"
+            label="Title"
+            v-model="forum.title"
         ></v-text-field>
     </v-col>
     <v-col cols="6">
-        <v-text-field
-            label="Title"
-            v-model="forum.title"
+         <v-text-field
+            label="Name"
+            v-model="forum.author"
         ></v-text-field>
     </v-col>
     <v-col cols="12">
@@ -20,6 +20,7 @@
             label="Write your story here"
         >
         </v-textarea>
+        <div class="grey--text text--darken-1">Note: your story must be longer than 100 characters</div>
     </v-col>
     <v-col
         cols="12"

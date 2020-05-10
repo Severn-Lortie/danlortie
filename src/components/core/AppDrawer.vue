@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import pages from '../../pages'
+import pages from '../../data/pages'
 import model from '../../mixins/Model'
 
 export default {

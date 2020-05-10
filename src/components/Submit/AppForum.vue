@@ -2,13 +2,6 @@
 <v-container class="fill-height">
     <app-snackbar v-model="displaySnackbar" :timeout="4000">
         {{message}}
-        <v-btn
-        text
-        class="text-capitalize"
-        @click.stop="displaySnackbar = false"
-        >
-            Okay.
-        </v-btn>
     </app-snackbar>
     
     <v-row justify="center">
@@ -49,6 +42,23 @@ export default {
             this.displayConfirm = true;
         },
         submitStory() {
+
+            // make sure nothing is left unfilled
+            const title = this.submittedStory.title === '';
+            const author = this.submittedStory.author === '';
+            const text = this.submittedStory.text === '';
+
+            const textLength = this.submittedStory.text.length <= 100;
+            if (title || author || text) {
+                this.message = "No field can be left empty."
+                this.displaySnackbar = true;
+                return;
+            } else if (textLength) {
+                this.message = "Your story must be longer than 100 characters."
+                this.displaySnackbar = true;
+                return;
+            }
+
             this.$store.dispatch('submitStory', this.submittedStory)
             .then((value) => {
                 if (value.status === 'OK') {
@@ -56,7 +66,7 @@ export default {
                     this.message = "Story submitted successfully.";
                 } else {
                     // trigger error snackbar
-                    this.message = "There was a problem submitting your story. Please try again";
+                    this.message = "There was a problem submitting your story. Please try again.";
                 }
                 this.displaySnackbar = true;
             });

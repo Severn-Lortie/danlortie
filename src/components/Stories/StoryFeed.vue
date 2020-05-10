@@ -19,13 +19,12 @@
                 cols="12"
                 :class="{'text-center':$vuetify.breakpoint.smAndDown}"
                 >
-                    <v-btn
+                    <app-btn
                         color="accent"
                         to="/submit"
-                        class="text-capitalize"
                     >
                         Share your story
-                    </v-btn>
+                    </app-btn>
                 </v-col>
                 <v-col
                     v-for="story in stories"
@@ -40,25 +39,18 @@
                     cols="12"
                     class="text-center"
                 >
-                    <v-btn
-                        elevation="0"
-                        class="text-capitalize"
-                        @click.stop="loadMore"
+                    <app-btn
+                        @clicked="loadMore"
                         text
                     >
                         Load more
-                    </v-btn>
+                    </app-btn>
                 </v-col>
             </v-row>
         </v-col>
     </v-row>
     <app-snackbar v-model="display">
         There are no more stories to load.
-        <v-btn
-            text
-            class="text-capitalize"
-            @click.stop="display = false"
-        >Okay</v-btn>
     </app-snackbar>
 </v-container>
 </template>
@@ -66,12 +58,13 @@
 <script>
 export default {
     data: () => ({
-        storiesPerLoad: 2,
+        storiesPerLoad: 5,
         display: false
     }),
     components: {
         storyFeedCard: () => import('./StoryFeedCard'),
-        appSnackbar: () => import('../core/AppSnackbar')
+        appSnackbar: () => import('../core/AppSnackbar'),
+        appBtn: () => import('../core/AppButton')
     },
     computed: {
         stories() {

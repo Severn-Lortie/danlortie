@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import pages from '../../pages';
+import pages from '../../data/pages';
 
 export default {
     data: () => ({

@@ -35,9 +35,7 @@ export default new Vuex.Store({
 
       commit('addStories', snapshot);
     },
-    async submitStory({
-      commit //eslint-disable-line
-    }, story) { 
+    async submitStory({commit }, story) { //eslint-disable-line
       try {
         await firestore.collections.stories.add({
           title: story.title,
@@ -45,14 +43,14 @@ export default new Vuex.Store({
           text: story.text,
           timestamp: firestore.timestamp
         });
-        return {
-          status: 'OK'
-        }
       } catch (e) {
-        console.log(e);
         return {
           status: 'Failed'
         }
+      }
+      // if no errors return okay
+      return {
+        status: 'OK'
       }
     },
     async loadNextStories({

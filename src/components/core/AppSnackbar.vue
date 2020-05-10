@@ -5,6 +5,14 @@
   >
     <!-- message slot -->
     <slot></slot>
+
+    <!-- close button -->
+    <app-btn
+        text
+        @clicked="model = false"
+        >
+            Okay.
+    </app-btn>
   </v-snackbar>
 </template>
 
@@ -17,6 +25,9 @@ export default {
             type: Number,
             default: 2000
         }
+    },
+    components: {
+      appBtn: () => import('../core/AppButton')
     },
     mixins: [model]
 }

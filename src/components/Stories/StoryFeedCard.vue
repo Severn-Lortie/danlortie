@@ -4,19 +4,21 @@
     <v-card-subtitle>{{story.author}}</v-card-subtitle>
     <v-card-text>{{story.text.substring(0, 250)}}</v-card-text>
     <v-card-actions>
-        <v-btn
+        <app-btn
             text
-            class="text-capitalize"
             :to="`/story/${story.id}`"
         >
         Read More
-        </v-btn>
+        </app-btn>
     </v-card-actions>
 </v-card>
 </template>
 
 <script>
 export default {
+    components: {
+        appBtn: () => import('../core/AppButton')
+    },
     props: {
         story: Object
     }

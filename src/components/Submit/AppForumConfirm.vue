@@ -21,22 +21,19 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
+            <app-btn
                 text
-                class="text-capitalize"
-                @click="model = false"
+                @clicked="model = false"
             >
                 Cancel
-            </v-btn>
-            <v-btn
-                class="text-capitalize"
+            </app-btn>
+            <app-btn
                 color="accent"
                 text
-                elevation="0"
-                @click="confirm"
+                @clicked="confirm"
             >
                 Submit
-            </v-btn>
+            </app-btn>
         </v-card-actions>
     </v-card>
 </v-dialog>
@@ -46,6 +43,9 @@
 import model from '../../mixins/Model'
 
 export default {
+    components: {
+        appBtn: () => import('../core/AppButton')
+    },
     props: {
         story: {}
     },
