@@ -1,6 +1,11 @@
 <template>
 <v-app>
-    <app-nav />
+    <app-nav 
+    @open-drawer="drawer = true"
+    />
+    <app-drawer
+    v-model="drawer"
+    />
     <v-content>
         <router-view />
     </v-content>
@@ -11,10 +16,11 @@
 export default {
     name: 'App',
     components: {
-        appNav: () => import('./components/core/AppNav')
+        appNav: () => import('./components/core/AppNav'),
+        appDrawer: () => import('./components/core/AppDrawer')
     },
     data: () => ({
-        //
+        drawer: false
     }),
     created() {
         this.$vuetify.theme.dark = true

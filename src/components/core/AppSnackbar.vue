@@ -1,6 +1,6 @@
 <template>
   <v-snackbar
-  v-model="valueChanged"
+  v-model="model"
   :timeout="timeout"
   >
     <!-- message slot -->
@@ -9,23 +9,15 @@
 </template>
 
 <script>
+import model from '../../mixins/Model'
+
 export default {
     props: {
-        value: Boolean,
         timeout: {
             type: Number,
             default: 2000
         }
     },
-    computed: {
-        valueChanged: {
-            get() {
-                return this.value;
-            },
-            set(newValue) {
-                this.$emit('input', newValue)
-            }
-        }
-    }
+    mixins: [model]
 }
 </script>

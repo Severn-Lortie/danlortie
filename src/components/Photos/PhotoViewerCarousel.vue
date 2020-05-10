@@ -1,11 +1,12 @@
 <template>
-<v-dialog
-    max-width="80%"
+<v-carousel
+    hide-delimiters
     v-model="model"
+    height="600"
 >
-    <!-- carousel -->
+    <!-- photos will be slotted in -->
     <slot></slot>
-</v-dialog>
+</v-carousel>
 </template>
 
 <script>

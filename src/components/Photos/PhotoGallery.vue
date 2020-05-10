@@ -5,21 +5,30 @@
 >
     <!-- photo viewer dialog -->
     <photo-viewer
-      :currentSlide="currentSlide"
-      v-model="dialog"
+        :currentSlide="currentSlide"
+        v-model="dialog"
     >
-        <photo-viewer-slide
-            v-for="(photo, i) in photos"
-            :key="i"
-            :imageSrc="getPhotoSrc(i)"
+        <photo-viewer-carousel
+        v-model="currentSlide"
         >
-        </photo-viewer-slide>
+            <photo-viewer-slide
+                v-for="(photo, i) in photos"
+                :key="i"
+                :imageSrc="getPhotoSrc(i)"
+            >
+            </photo-viewer-slide>
+        </photo-viewer-carousel>
     </photo-viewer>
 
-    <v-row>
+    <v-row
+        align="start"
+        justify="start"
+    >
         <v-col
             v-for="(photo, i) in photos"
-            cols="4"
+            md="4"
+            sm="6"
+            cols="12"
             :key="i"
         >
             <photo-gallery-card
@@ -61,14 +70,15 @@ export default {
             return require(`../../assets/img/${fileName}`);
         },
         openViewer(index) {
-          this.currentSlide = index;
-          this.dialog = true;
+            this.currentSlide = index;
+            this.dialog = true;
         }
     },
     components: {
         photoGalleryCard: () => import("./PhotoGalleryCard"),
         photoViewer: () => import('./PhotoViewer'),
-        photoViewerSlide: () => import('./PhotoViewerSlide')
+        photoViewerSlide: () => import('./PhotoViewerSlide'),
+        photoViewerCarousel: () => import('./PhotoViewerCarousel')
     }
 };
 </script>

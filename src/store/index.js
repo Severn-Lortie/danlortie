@@ -23,17 +23,21 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async loadStories({commit}, limit) {
+    async loadStories({
+      commit
+    }, limit) {
 
       // get the newest stories
       const snapshot = await firestore.collections.stories
-      .orderBy('timestamp')
-      .limit(limit)
-      .get();
+        .orderBy('timestamp')
+        .limit(limit)
+        .get();
 
       commit('addStories', snapshot);
     },
-    async submitStory({commit}, story) { //eslint-disable-line
+    async submitStory({
+      commit //eslint-disable-line
+    }, story) { 
       try {
         await firestore.collections.stories.add({
           title: story.title,
@@ -41,28 +45,39 @@ export default new Vuex.Store({
           text: story.text,
           timestamp: firestore.timestamp
         });
-        return {status: 'OK'}
-      } catch(e) {
+        return {
+          status: 'OK'
+        }
+      } catch (e) {
         console.log(e);
-        return {status: 'Failed'}
+        return {
+          status: 'Failed'
+        }
       }
     },
-    async loadNextStories({commit, state}, limit) {
+    async loadNextStories({
+      commit,
+      state
+    }, limit) {
       // load up to five documents, starting at the most recently added one
       const snapshot = await firestore.collections.stories
-      .orderBy('timestamp')
-      .startAfter(state.lastDoc)
-      .limit(limit)
-      .get();
+        .orderBy('timestamp')
+        .startAfter(state.lastDoc)
+        .limit(limit)
+        .get();
 
       // return empty if no docs
       if (snapshot.empty) {
-        return {empty: true};
+        return {
+          empty: true
+        };
       }
 
       // add each document to the state
       commit('addStories', snapshot)
-      return {empty: false};
+      return {
+        empty: false
+      };
     }
   },
   modules: {}

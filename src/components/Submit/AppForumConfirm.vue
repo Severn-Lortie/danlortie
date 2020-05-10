@@ -1,7 +1,7 @@
 <template>
 <v-dialog
-    v-model="display"
-    max-width="50%"
+    v-model="model"
+    :max-width="$vuetify.breakpoint.smAndDown ? '80%' : '50%'"
 >
     <v-card>
         <v-card-title>Confirm your Submission</v-card-title>
@@ -24,7 +24,7 @@
             <v-btn
                 text
                 class="text-capitalize"
-                @click="display = false"
+                @click="model = false"
             >
                 Cancel
             </v-btn>
@@ -43,26 +43,18 @@
 </template>
 
 <script>
+import model from '../../mixins/Model'
+
 export default {
     props: {
-        value: Boolean,
         story: {}
     },
     methods: {
         confirm() {
             this.$emit('confirmed');
-            this.display = false;
+            this.model = false;
         }
     },
-    computed: {
-        display: {
-            get() {
-                return this.value;
-            },
-            set(value) {
-                this.$emit('input', value)
-            }
-        }
-    }
+    mixins: [model]
 }
 </script>

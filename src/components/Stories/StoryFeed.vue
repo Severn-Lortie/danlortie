@@ -7,12 +7,18 @@
         align="start"
         justify="center"
     >
-        <v-col cols="10">
+        <v-col
+            md="10"
+            cols="11"
+        >
             <v-row
                 align="start"
-                justify="start"
+                :justify="justify"
             >
-                <v-col cols="6">
+                <v-col
+                cols="12"
+                :class="{'text-center':$vuetify.breakpoint.smAndDown}"
+                >
                     <v-btn
                         color="accent"
                         to="/submit"
@@ -21,15 +27,12 @@
                         Share your story
                     </v-btn>
                 </v-col>
-            </v-row>
-            <v-row
-                align="start"
-                justify="start"
-            >
                 <v-col
                     v-for="story in stories"
                     :key="story.id"
-                    cols="6"
+                    md="6"
+                    sm="10"
+                    cols="12"
                 >
                     <story-feed-card :story="story" />
                 </v-col>
@@ -41,6 +44,7 @@
                         elevation="0"
                         class="text-capitalize"
                         @click.stop="loadMore"
+                        text
                     >
                         Load more
                     </v-btn>
@@ -72,14 +76,17 @@ export default {
     computed: {
         stories() {
             return this.$store.state.stories;
+        },
+        justify() {
+            return this.$vuetify.breakpoint.smAndDown ? 'center' : 'start';
         }
     },
     methods: {
         loadMore() {
             this.$store.dispatch('loadNextStories', this.storiesPerLoad)
-            .then((value) => {
-               this.display = value.empty; 
-            });
+                .then((value) => {
+                    this.display = value.empty;
+                });
         }
     },
 }

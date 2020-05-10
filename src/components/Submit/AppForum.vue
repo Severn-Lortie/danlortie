@@ -12,7 +12,7 @@
     </app-snackbar>
     
     <v-row justify="center">
-        <v-col cols="7">
+        <v-col cols="12" md="7">
             <app-forum-header />
 
             <app-forum-input
