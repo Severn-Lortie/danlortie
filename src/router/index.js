@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import Photos from '../views/Photos'
 import Stories from '../views/Stories'
+import StoryViewer from '../views/StoryViewer'
+import Forum from '../views/Forum'
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,14 @@ Vue.use(VueRouter)
     {
       path: '/stories',
       component: Stories
+    },
+    {
+      path: '/story/:id',
+      component: StoryViewer
+    },
+    {
+      path: '/submit',
+      component: Forum
     }
   ];
 

@@ -1,12 +1,13 @@
 <template>
 <v-card flat>
-    <v-card-title>I will tell you a story...</v-card-title>
-    <v-card-subtitle>Philip Lortie</v-card-subtitle>
-    <v-card-text>{{getLorem().substring(0, 250)}}</v-card-text>
+    <v-card-title>{{story.title}}</v-card-title>
+    <v-card-subtitle>{{story.author}}</v-card-subtitle>
+    <v-card-text>{{story.text.substring(0, 250)}}</v-card-text>
     <v-card-actions>
         <v-btn
             text
             class="text-capitalize"
+            :to="`/story/${story.id}`"
         >
         Read More
         </v-btn>
@@ -15,9 +16,9 @@
 </template>
 
 <script>
-import lorem from '../../mixins/Lorem'
-
 export default {
-    mixins: [lorem]
+    props: {
+        story: Object
+    }
 }
 </script>

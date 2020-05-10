@@ -8,7 +8,7 @@
    text
    to="/"
    >
-       <v-icon>
+       <v-icon color="primary">
            mdi-home
        </v-icon>
    </v-btn>
@@ -41,6 +41,10 @@ export default {
             {
                 title: 'Stories',
                 link: '/stories'
+            },
+            {
+                title: 'Submit a Story',
+                link: '/submit'
             }
         ]
     })

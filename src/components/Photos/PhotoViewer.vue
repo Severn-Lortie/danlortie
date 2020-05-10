@@ -2,7 +2,6 @@
 <v-dialog
     max-width="80%"
     v-model="showDialog"
-    
 >
     <div>
         <v-carousel
