@@ -8,6 +8,9 @@
 export default {
     components: {
         photoGallery: () => import('../components/Photos/PhotoGallery')
+    },
+    created() {
+        this.$store.dispatch('loadAllPhotos');
     }
 }
 </script>

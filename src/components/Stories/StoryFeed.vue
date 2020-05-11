@@ -68,7 +68,7 @@ export default {
     },
     computed: {
         stories() {
-            return this.$store.state.stories;
+            return this.$store.state.story.stories;
         },
         justify() {
             return this.$vuetify.breakpoint.smAndDown ? 'center' : 'start';

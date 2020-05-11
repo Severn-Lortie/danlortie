@@ -14,7 +14,7 @@
             <photo-viewer-slide
                 v-for="(photo, i) in photos"
                 :key="i"
-                :imageSrc="getPhotoSrc(i)"
+                :imageSrc="photo.url"
             >
             </photo-viewer-slide>
         </photo-viewer-carousel>
@@ -32,7 +32,7 @@
             :key="i"
         >
             <photo-gallery-card
-                :src="getPhotoSrc(i)"
+                :src="photo.url"
                 :subtitle="photo.subtitle"
                 :id="i"
                 @clicked="openViewer"
@@ -47,31 +47,16 @@ export default {
     data: () => ({
         currentSlide: 0,
         dialog: false,
-        photos: [{
-                subtitle: "Hello!"
-            },
-            {
-                subtitle: "Hello!"
-            },
-            {
-                subtitle: "Hello!"
-            },
-            {
-                subtitle: "Hello!"
-            },
-            {
-                subtitle: "Hello!"
-            }
-        ]
     }),
     methods: {
-        getPhotoSrc(index) {
-            const fileName = `gallery${index + 1}.jpg`;
-            return require(`../../assets/img/${fileName}`);
-        },
         openViewer(index) {
             this.currentSlide = index;
             this.dialog = true;
+        }
+    },
+    computed: {
+        photos() {
+            return this.$store.state.photo.photos;
         }
     },
     components: {

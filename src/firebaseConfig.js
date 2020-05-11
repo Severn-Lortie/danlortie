@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 const firebaseConfig = {
     apiKey: "AIzaSyDCM9BhxB4d91TrPfyqM3mt2XXuu06Qf-c",
@@ -18,11 +19,15 @@ const firebaseConfig = {
   const db = firebase.firestore();
   
   // collections 
-  const stories = db.collection('stories')
+  const stories = db.collection('stories');
 
-  // export the database and collections
+  // initalize 
+  const storage = firebase.storage();
+
+  // export the database, the storage and collections
   export default {
     db,
+    storage,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     collections: {
         stories

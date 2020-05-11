@@ -1,27 +1,21 @@
 <template>
-<v-card
-    flat
-    tile
-    class="d-flex"
-    @click.stop="$emit('clicked', id)"
-    :ripple="false"
->
-    <v-img
-        :src="src"
-        aspect-ratio="1"
-        class="grey lighten-2"
-        gradient="to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)"
+<v-hover v-slot:default="{ hover }">
+    <v-card
+        flat
+        tile
+        @click.stop="$emit('clicked', id)"
+        :ripple="false"
     >
-        <v-row
-            align="end"
-            class="pa-2 fill-height"
+        <v-img
+            :src="src"
+            aspect-ratio="1"
         >
-            <v-col>
-                <div class="subtitle">{{subtitle}}</div>
-            </v-col>
-        </v-row>
-    </v-img>
-</v-card>
+            <photo-gallery-card-subtitle :hover="hover">
+                {{subtitle}}
+            </photo-gallery-card-subtitle>
+        </v-img>
+    </v-card>
+</v-hover>
 </template>
 
 <script>
@@ -30,6 +24,13 @@ export default {
         subtitle: String,
         src: String,
         id: Number
+    },
+    components: {
+        photoGalleryCardSubtitle: () => import('./PhotoGalleryCardSubtitle')
     }
 };
 </script>
+
+<style scoped>
+
+</style>

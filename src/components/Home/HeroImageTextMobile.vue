@@ -1,10 +1,10 @@
 <template>
   <v-row align="end" justify="center" class="fill-height">
         <v-col cols="12">
-            <h1 class="text-center roboto-subtitle-mobile accent--text">OVERLINE</h1>
+            <h1 class="text-center roboto-subtitle-mobile accent--text text-uppercase">In Loving Memory</h1>
             <h1 class="text-weight-bold roboto-title-mobile text-center">Dan C. Lortie</h1>
             <app-divider centered class="mt-3 mb-3"></app-divider>
-            <h1 class="text-center roboto-italic">Subtitle</h1>
+            <h1 class="text-center roboto-italic">1926 - 2020</h1>
         </v-col>
     </v-row>
 </template>
