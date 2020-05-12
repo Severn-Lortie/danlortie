@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="display-1 font-weight-bold">
+        <h1 class="display-1 font-weight-bold text-capitalize">
             <!-- Title slot -->
             <slot name="title"></slot>
         </h1>

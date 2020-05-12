@@ -7,6 +7,7 @@ import Photos from '../views/Photos'
 import Stories from '../views/Stories'
 import StoryViewer from '../views/StoryViewer'
 import Forum from '../views/Forum'
+import app404 from '../views/404'
 
 Vue.use(VueRouter)
 
@@ -30,10 +31,16 @@ Vue.use(VueRouter)
     {
       path: '/submit',
       component: Forum
+    },
+    // 404
+    {
+      path: '*',
+      component: app404
     }
   ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

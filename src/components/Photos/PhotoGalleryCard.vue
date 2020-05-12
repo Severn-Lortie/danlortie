@@ -1,18 +1,36 @@
 <template>
-<v-hover v-slot:default="{ hover }">
+<v-hover
+    v-slot:default="{ hover }"
+    :value="$vuetify.breakpoint.xs"
+>
     <v-card
         flat
         tile
-        @click.stop="$emit('clicked', id)"
+        @click.stop="$emit('clicked', meta.id)"
         :ripple="false"
     >
         <v-img
-            :src="src"
+            :src="meta.photo.url"
             aspect-ratio="1"
         >
-            <photo-gallery-card-subtitle :hover="hover">
-                {{subtitle}}
-            </photo-gallery-card-subtitle>
+            <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                    <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                    ></v-progress-circular>
+                </v-row>
+            </template>
+            <card-subtitle
+                :display="hover"
+                v-if="meta.photo.subtitle"
+            >
+                {{meta.photo.subtitle}}
+            </card-subtitle>
         </v-img>
     </v-card>
 </v-hover>
@@ -21,16 +39,10 @@
 <script>
 export default {
     props: {
-        subtitle: String,
-        src: String,
-        id: Number
+        meta: Object
     },
     components: {
-        photoGalleryCardSubtitle: () => import('./PhotoGalleryCardSubtitle')
+        cardSubtitle: () => import('./PhotoGalleryCardSubtitle')
     }
-};
+}
 </script>
-
-<style scoped>
-
-</style>

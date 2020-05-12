@@ -8,9 +8,7 @@
         :currentSlide="currentSlide"
         v-model="dialog"
     >
-        <photo-viewer-carousel
-        v-model="currentSlide"
-        >
+        <photo-viewer-carousel v-model="currentSlide">
             <photo-viewer-slide
                 v-for="(photo, i) in photos"
                 :key="i"
@@ -32,13 +30,21 @@
             :key="i"
         >
             <photo-gallery-card
-                :src="photo.url"
-                :subtitle="photo.subtitle"
-                :id="i"
+                :meta="{photo, id: i}"
                 @clicked="openViewer"
-            ></photo-gallery-card>
+            />
+        </v-col>
+        <v-col cols="12" class="text-center">
+            <app-btn @clicked="loadNext">
+                Load More
+            </app-btn>
         </v-col>
     </v-row>
+    <app-snackbar
+    v-model="displaySnackbar"
+    >
+        There are no more photos to load.
+    </app-snackbar>
 </v-container>
 </template>
 
@@ -47,11 +53,21 @@ export default {
     data: () => ({
         currentSlide: 0,
         dialog: false,
+        photosPerLoad: 20,
+        displaySnackbar: false
     }),
     methods: {
         openViewer(index) {
             this.currentSlide = index;
             this.dialog = true;
+        },
+        loadNext() {
+            this.$store.dispatch('loadNextPhotos', this.photosPerLoad)
+            .then(val => {
+                if (val.empty) {
+                    this.displaySnackbar = true;
+                }
+            });
         }
     },
     computed: {
@@ -60,10 +76,12 @@ export default {
         }
     },
     components: {
-        photoGalleryCard: () => import("./PhotoGalleryCard"),
+        photoGalleryCard: () => import('./PhotoGalleryCard'),
         photoViewer: () => import('./PhotoViewer'),
         photoViewerSlide: () => import('./PhotoViewerSlide'),
-        photoViewerCarousel: () => import('./PhotoViewerCarousel')
+        photoViewerCarousel: () => import('./PhotoViewerCarousel'),
+        appBtn: () => import('../core/AppButton'),
+        appSnackbar: () => import('../core/AppSnackbar')
     }
 };
 </script>

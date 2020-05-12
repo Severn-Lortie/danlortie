@@ -20,10 +20,14 @@ export default {
         appDrawer: () => import('./components/core/AppDrawer')
     },
     data: () => ({
-        drawer: false
+        drawer: false,
     }),
     created() {
-        this.$vuetify.theme.dark = true
+        this.$vuetify.theme.dark = true;
+
+        // load the first batch of photos
+        this.$store.dispatch('loadPhotos', 20);
+        this.$store.dispatch('loadStories', 6);
     }
 };
 </script>

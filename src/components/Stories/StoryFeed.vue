@@ -41,7 +41,6 @@
                 >
                     <app-btn
                         @clicked="loadMore"
-                        text
                     >
                         Load more
                     </app-btn>
@@ -58,7 +57,7 @@
 <script>
 export default {
     data: () => ({
-        storiesPerLoad: 5,
+        storiesPerLoad: 10,
         display: false
     }),
     components: {

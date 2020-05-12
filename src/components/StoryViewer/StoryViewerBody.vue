@@ -1,5 +1,5 @@
 <template>
-  <div class="body-1">
+  <div class="body-1 whitespace">
       <!-- main text slot -->
       <slot></slot>
   </div>
@@ -10,3 +10,10 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.whitespace {
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+</style>

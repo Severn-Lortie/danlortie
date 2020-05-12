@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import firestore from '../../firebaseConfig'
+import Vue from "vue";
+import firestore from "../../firebaseConfig";
 
 const stories = {
   state: () => ({
     lastDoc: {},
-    stories: {},
+    stories: {}
   }),
 
   mutations: {
@@ -17,6 +17,11 @@ const stories = {
         Vue.set(state.stories, doc.id, docData);
       });
     },
+    setStatus(state, status) {
+      // stores the result of the last fetch 
+      state.status = status;
+
+    }
   },
 
   actions: {
@@ -26,32 +31,18 @@ const stories = {
         .orderBy("timestamp")
         .limit(limit)
         .get();
-
       commit("addStories", snapshot);
     },
-    async submitStory(
-      {
-        commit, //eslint-disable-line
-      },
-      story
-    ) {
-      try {
-        await firestore.collections.stories.add({
-          title: story.title,
-          author: story.author,
-          text: story.text,
-          timestamp: firestore.timestamp,
-        });
-      } catch (e) {
-        return {
-          status: "Failed",
-        };
-      }
-      // if no errors return okay
-      return {
-        status: "OK",
-      };
+
+    async submitStory({ commit }, story) { //eslint-disable-line
+      await firestore.collections.stories.add({
+        title: story.title,
+        author: story.author,
+        text: story.text,
+        timestamp: firestore.timestamp
+      });
     },
+
     async loadNextStories({ commit, state }, limit) {
       // load up to five documents, starting at the most recently added one
       const snapshot = await firestore.collections.stories
@@ -70,10 +61,10 @@ const stories = {
       // add each document to the state
       commit("addStories", snapshot);
       return {
-        empty: false
+        empty: false,
       };
-    }
-  }
+    },
+  },
 };
 
 export default stories;

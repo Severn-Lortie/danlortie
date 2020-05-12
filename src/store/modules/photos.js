@@ -1,41 +1,69 @@
 import firebase from "../../firebaseConfig";
+import Vue from "vue";
 
 const photos = {
   state: () => ({
+    lastDoc: {},
     photos: [],
   }),
   mutations: {
-    addPhoto(state, photo) {
-      // don't add dupes
-      if (!state.photos.some((obj) => obj.url === photo.url)) {
-        state.photos.push({
-          url: photo.url,
-          subtitle: photo.subtitle,
-        });
+    addPhotoMeta(state, doc) {
+      state.photos.push(doc.data());
+      state.lastDoc = {
+        doc,
+        index: (state.photos.length - 1)
       }
+    },
+    setPhotoUrl(state, params) {
+      Vue.set(state.photos[params.index], "url", params.url);
     },
   },
   actions: {
-    async loadAllPhotos({ commit }) {
-      // get a ref to the images folder
-      const res = await firebase.storage.ref("images").listAll();
-
-      res.prefixes.forEach(async (prefix) => {
-        const folder = await prefix.listAll();
-
-        folder.items.forEach(async (photo) => {
-          const url = await photo.getDownloadURL();
-          const metaData = await photo.getMetadata();
-
-          // some photos may not have a subtitle
-          const params = { url };
-          if (metaData.customMetadata) {
-            params.subtitle = metaData.customMetadata.subtitle;
-          }
-
-          commit("addPhoto", params);
-        });
+    async loadUrls({state, commit}) {
+      state.photos.forEach( async (photo, i) => {
+        const url = await firebase.storage.ref(photo.prefix).getDownloadURL();
+        commit('setPhotoUrl', {
+          index: i,
+          url
+        })
       });
+    },
+    async loadPhotos({commit, dispatch}, limit) {
+      let snapshot = await firebase.db
+        .collection("photos")
+        .orderBy("decade")
+        .limit(limit)
+        .get();
+
+      // add the metas
+      snapshot.docs.forEach( async (doc) => {
+        commit("addPhotoMeta", doc);
+      });
+
+      // load the urls
+      dispatch('loadUrls');
+
+    },
+    async loadNextPhotos({ state, commit, dispatch}, limit) { 
+      // start at the head of local photos
+      const snapshot = await firebase.db
+        .collection("photos")
+        .orderBy("decade")
+        .limit(limit)
+        .startAfter(state.lastDoc.doc)
+        .get();
+
+      if (snapshot.empty) {
+        return {empty: true}
+      }  
+      
+      snapshot.forEach( async (doc) => {
+        // commit the meta
+        commit('addPhotoMeta', doc);
+      });
+
+      dispatch('loadUrls');
+      return {empty: false}
     },
   },
 };

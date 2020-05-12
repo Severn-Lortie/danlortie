@@ -1,24 +1,22 @@
 <template>
-    <div>
-        <story-viewer :story="story"></story-viewer>
-    </div>
+  <div>
+    <story-viewer v-if="story" :story="story"></story-viewer>
+  </div>
 </template>
 
 <script>
 export default {
-    components: {
-        StoryViewer: () => import('../components/StoryViewer/StoryViewer')
-    },
-    data: () => ({
-        story: {}
-    }),
-    mounted() {
-        // check that the id of the story is valid
-        if (this.$store.state.stories[this.$route.params.id]) {
-            this.story = this.$store.state.stories[this.$route.params.id];
+  components: {
+    StoryViewer: () => import("../components/StoryViewer/StoryViewer"),
+  },
+  computed: {
+    story() {
+        if (this.$store.state.story.stories) {
+            return this.$store.state.story.stories[this.$route.params.id];
         } else {
-            this.$router.push('/');
+            return {};
         }
     }
-}
+  }
+};
 </script>
