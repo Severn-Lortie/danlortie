@@ -14,16 +14,7 @@
             aspect-ratio="1"
         >
             <template v-slot:placeholder>
-                <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                >
-                    <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"
-                    ></v-progress-circular>
-                </v-row>
+                <image-progress/>
             </template>
             <card-subtitle
                 :display="hover"
@@ -42,7 +33,8 @@ export default {
         meta: Object
     },
     components: {
-        cardSubtitle: () => import('./PhotoGalleryCardSubtitle')
+        cardSubtitle: () => import('./PhotoGalleryCardSubtitle'),
+        imageProgress: () => import("../core/AppImageProgress")
     }
 }
 </script>

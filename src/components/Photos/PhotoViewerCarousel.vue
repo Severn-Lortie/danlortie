@@ -2,7 +2,7 @@
 <v-carousel
     hide-delimiters
     v-model="model"
-    height="600"
+    :height="$vuetify.breakpoint.xs ? '500' : '600'"
 >
     <!-- photos will be slotted in -->
     <slot></slot>
