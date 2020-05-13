@@ -8,7 +8,8 @@
     </app-forum-header-help>
     <v-row class="mt-4">
         <v-col cols="6">
-            <div class="display-1 font-weight-bold">
+            <div class="display-1 font-weight-bold"
+            >
                 Share your Story
             </div>
         </v-col>
@@ -21,6 +22,7 @@
                 x-small
                 class="text-center mt-1"
                 @clicked="displayHelp = true"
+
             >
                 <v-icon
                     color="primary"
