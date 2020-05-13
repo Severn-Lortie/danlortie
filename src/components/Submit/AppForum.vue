@@ -6,7 +6,7 @@
       <v-col cols="12" md="7">
         <app-forum-header />
 
-        <app-forum-input @submitted="confirmSubmit"></app-forum-input>
+        <app-forum-input @submit="confirmSubmit"></app-forum-input>
 
         <app-forum-confirm
           :story="submittedStory"
@@ -33,8 +33,8 @@ export default {
     message: ""
   }),
   methods: {
-    confirmSubmit(story) {
-      this.submittedStory = story;
+    confirmSubmit() {
+      this.submittedStory = this.$store.state.story.forum;
       this.displayConfirm = true;
     },
     submitStory() {

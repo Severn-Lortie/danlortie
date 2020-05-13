@@ -4,7 +4,12 @@ import firestore from "../../firebaseConfig";
 const stories = {
   state: () => ({
     lastDoc: {},
-    stories: {}
+    stories: {},
+    forum: {
+      author: '',
+      title: '',
+      text: '',
+    },
   }),
 
   mutations: {
@@ -18,10 +23,18 @@ const stories = {
       });
     },
     setStatus(state, status) {
-      // stores the result of the last fetch 
+      // stores the result of the last fetch
       state.status = status;
-
-    }
+    },
+    setForumAuthor(state, author) {
+      Vue.set(state.forum, "author", author);
+    },
+    setForumTitle(state, title) {
+      Vue.set(state.forum, "title", title);
+    },
+    setForumText(state, text) {
+      Vue.set(state.forum, "text", text);
+    },
   },
 
   actions: {
@@ -34,12 +47,12 @@ const stories = {
       commit("addStories", snapshot);
     },
 
-    async submitStory({ commit }, story) { //eslint-disable-line
+    async submitStory({state}) { 
       await firestore.collections.stories.add({
-        title: story.title,
-        author: story.author,
-        text: story.text,
-        timestamp: firestore.timestamp
+        title: state.forum.title,
+        author: state.forum.author,
+        text: state.forum.text,
+        timestamp: firestore.timestamp,
       });
     },
 
