@@ -1,7 +1,6 @@
 <template>
 <v-hover
     v-slot:default="{ hover }"
-    :value="$vuetify.breakpoint.xs"
 >
     <v-card
         flat
@@ -17,7 +16,7 @@
                 <image-progress/>
             </template>
             <card-subtitle
-                :display="hover"
+                :display="hover || $vuetify.breakpoint.xs"
                 v-if="meta.photo.subtitle"
             >
                 {{meta.photo.subtitle}}
