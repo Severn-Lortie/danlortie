@@ -54,12 +54,16 @@ export default {
         return;
       }
 
-      this.$store.dispatch("submitStory", this.submittedStory).catch((e) => {
+      this.$store.dispatch("submitStory", this.submittedStory)
+      .then(() => {
+        // clear the store
+        this.$store.commit('clearForum');
+      })
+      .catch((e) => {
         this.message = "Looks like there was an issue submitting your story. Please try again."
         console.error(e);
       });
       this.message = "Story submitted successfully.";
-
       this.displaySnackbar = true;
     }
   }

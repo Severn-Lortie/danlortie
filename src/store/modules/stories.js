@@ -35,6 +35,13 @@ const stories = {
     setForumText(state, text) {
       Vue.set(state.forum, "text", text);
     },
+    clearForum(state) {
+      state.forum = {
+        author: '',
+        title: '',
+        text: ''
+      };
+    }
   },
 
   actions: {
