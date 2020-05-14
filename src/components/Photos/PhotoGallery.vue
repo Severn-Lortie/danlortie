@@ -22,6 +22,7 @@
         align="start"
         justify="start"
     >
+    <v-col cols="12 text-center grey--text text--darken-1 pt-1 pb-1">Click or tap on a photo to view it.</v-col>
         <v-col
             v-for="(photo, i) in photos"
             md="4"
