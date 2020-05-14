@@ -1,18 +1,19 @@
 <template>
-<v-carousel
+  <v-carousel
     hide-delimiters
     v-model="model"
-    :height="$vuetify.breakpoint.xs ? '500' : '600'"
->
+    :height="$vuetify.breakpoint.xs ? '100%' : '600'"
+    :touchless="$vuetify.breakpoint.xs"
+  >
     <!-- photos will be slotted in -->
     <slot></slot>
-</v-carousel>
+  </v-carousel>
 </template>
 
 <script>
-import model from '../../mixins/Model';
+import model from "../../mixins/Model";
 
 export default {
-    mixins: [model]
-}
+  mixins: [model]
+};
 </script>

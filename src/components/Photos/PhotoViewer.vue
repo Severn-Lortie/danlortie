@@ -1,17 +1,29 @@
 <template>
-<v-dialog
+  <v-dialog
     max-width="80%"
     v-model="model"
->
+    hide-overlay
+    :fullscreen="$vuetify.breakpoint.xs"
+  >
+    <v-btn
+      fab
+      absolute
+      color="transparent"
+      elevation="0"
+      v-if="$vuetify.breakpoint.xs"
+    >
+      <v-icon @click="model = false">mdi-close</v-icon>
+    </v-btn>
+
     <!-- carousel -->
     <slot></slot>
-</v-dialog>
+  </v-dialog>
 </template>
 
 <script>
-import model from '../../mixins/Model';
+import model from "../../mixins/Model";
 
 export default {
-    mixins: [model]
-}
+  mixins: [model]
+};
 </script>
