@@ -12,7 +12,7 @@
       elevation="0"
       v-if="$vuetify.breakpoint.xs"
     >
-      <v-icon @click="model = false">mdi-close</v-icon>
+      <v-icon @click.stop="model = false">mdi-close</v-icon>
     </v-btn>
 
     <!-- carousel -->
