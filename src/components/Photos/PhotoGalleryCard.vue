@@ -2,7 +2,7 @@
   <v-lazy
     v-model="isActive"
     :options="{
-        threshold: .1
+        threshold: .05
     }"
     min-height="200"
     transition="fade-transition"

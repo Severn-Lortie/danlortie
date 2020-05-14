@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import pages from '../../data/pages'
 import model from '../../mixins/Model'
+const pages = require('../../data/pages.json');
 
 export default {
     data: () => ({
-        pages
+        pages: pages.list
     }),
     mixins: [model]
 }

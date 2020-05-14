@@ -36,11 +36,11 @@
 </template>
 
 <script>
-import pages from '../../data/pages';
+const pages = require('../../data/pages.json');
 
 export default {
     data: () => ({
-        pages
+        pages: pages.list
     })
 };
 </script>

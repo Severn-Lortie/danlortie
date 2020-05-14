@@ -3,11 +3,12 @@ import VueRouter from 'vue-router'
 
 // views
 import Home from '../views/Home'
+import Obituary from '../views/Obituary.vue'
 import Photos from '../views/Photos'
 import Stories from '../views/Stories'
 import StoryViewer from '../views/StoryViewer'
 import Forum from '../views/Forum'
-import app404 from '../views/404'
+import App404 from '../views/404'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,10 @@ Vue.use(VueRouter)
     {
       path: '/',
       component: Home
+    },
+    {
+      path: '/obituary',
+      component: Obituary
     },
     {
       path: '/photos',
@@ -35,7 +40,7 @@ Vue.use(VueRouter)
     // 404
     {
       path: '*',
-      component: app404
+      component: App404
     }
   ];
 
