@@ -1,6 +1,10 @@
 <template>
 <div class="text-center text-sm-left">
-    <v-img :src="require('../../assets/img/Obit.webp')"/>
+    <v-img :src="require('../../assets/img/Obit.jpeg')">
+        <template v-slot:placeholder>
+            <image-progress/>
+        </template>
+    </v-img>
     <div class="mt-4 grey--text text--darken-1 font-italic">
         {{caption}}
     </div>
@@ -11,6 +15,9 @@
 export default {
     data: () => ({
         caption: 'Graduating McGill University.'
-    })
+    }),
+    components: {
+        imageProgress: () => import('../core/AppImageProgress')
+    }
 }
 </script>
