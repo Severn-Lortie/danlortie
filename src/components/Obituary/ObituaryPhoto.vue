@@ -14,7 +14,7 @@
 <script>
 export default {
     data: () => ({
-        caption: 'Graduating McGill University.'
+        caption: 'Graduating from the University of Chicago.'
     }),
     components: {
         imageProgress: () => import('../core/AppImageProgress')
