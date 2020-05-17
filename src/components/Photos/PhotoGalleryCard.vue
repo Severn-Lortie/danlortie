@@ -14,7 +14,7 @@
             <image-progress />
           </template>
           <card-subtitle
-            :display="hover || $vuetify.breakpoint.xs"
+            :display="hover || $vuetify.breakpoint.mdAndDown"
             v-if="meta.photo.subtitle"
           >{{meta.photo.subtitle}}</card-subtitle>
         </v-img>

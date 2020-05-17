@@ -3,7 +3,7 @@
     hide-delimiters
     v-model="model"
     :height="$vuetify.breakpoint.xs ? '100%' : '90vh'"
-    :touchless="$vuetify.breakpoint.xs"
+    :touchless="true"
   >
 
     <!-- photos will be slotted in -->
