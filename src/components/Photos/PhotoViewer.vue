@@ -1,29 +1,44 @@
 <template>
   <v-dialog
     max-width="80%"
-    v-model="model"
-    hide-overlay
     :fullscreen="$vuetify.breakpoint.xs"
+    v-model="model"
+    ref="dialog"
   >
     <v-btn
-      fab
-      absolute
-      color="transparent"
-      elevation="0"
-      v-if="$vuetify.breakpoint.xs"
+    fab
+    absolute
+    color="transparent"
+    elevation="0"
+    @click.stop="model = false"
     >
-      <v-icon @click.stop="model = false">mdi-close</v-icon>
+      <v-icon>mdi-close</v-icon>
     </v-btn>
-
-    <!-- carousel -->
+    <!-- Carousel -->
     <slot></slot>
   </v-dialog>
 </template>
 
 <script>
 import model from "../../mixins/Model";
+const bodyScrollLock = require('body-scroll-lock');
 
 export default {
-  mixins: [model]
+  mixins: [model],
+  components: {
+    appBtn: () => import("../core/AppButton") //eslint-disable-line
+  },
+  watch: {
+    value(val) {
+      if (val) {
+        // modal shown
+        bodyScrollLock.disableBodyScroll(this.$refs.dialog.$el);
+      } else {
+        // modal hidden
+        bodyScrollLock.enableBodyScroll(this.$refs.dialog.$el);
+      }
+    }
+  }
 };
 </script>
+  

@@ -1,12 +1,13 @@
 <template>
   <v-container fluid class="fill-height">
     <!-- photo viewer dialog -->
-    <photo-viewer :currentSlide="currentSlide" v-model="dialog">
+    <photo-viewer v-model="dialog">
       <photo-viewer-carousel v-model="currentSlide">
         <photo-viewer-slide
           v-for="(photo, i) in photos"
           :key="i"
-          :imageSrc="photo.url"
+          :imageSrc="photo.fullUrl"
+          :ready="ready"
         >
         </photo-viewer-slide>
       </photo-viewer-carousel>
@@ -37,12 +38,15 @@ export default {
     currentSlide: 0,
     dialog: false,
     photosPerLoad: 20,
-    displaySnackbar: false
+    displaySnackbar: false,
+    ready: false
   }),
   methods: {
     openViewer(index) {
+      this.ready = false;
       this.currentSlide = index;
       this.dialog = true;
+      setTimeout(() => this.ready = true, 150);
     },
     loadNext() {
       this.$store.dispatch("loadNextPhotos", this.photosPerLoad).then(val => {

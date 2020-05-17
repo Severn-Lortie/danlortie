@@ -26,7 +26,6 @@ export default {
     justify-content: center;
     position: absolute;
     width: 100%;
-    height: 15%;
     background: rgba(0, 0, 0, 0.5);
     text-align: center;
 }

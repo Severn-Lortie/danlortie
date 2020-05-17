@@ -4,10 +4,10 @@ import Vue from "vue";
 const photos = {
   state: () => ({
     lastDoc: {},
-    photos: [],
+    photos: []
   }),
   mutations: {
-    addPhotoMeta(state, doc) {
+    addPhoto(state, doc) {
       state.photos.push(doc.data());
       state.lastDoc = {
         doc,
@@ -16,16 +16,19 @@ const photos = {
     },
     setPhotoUrl(state, params) {
       Vue.set(state.photos[params.index], "url", params.url);
+      Vue.set(state.photos[params.index], "fullUrl", params.fullUrl);
     },
   },
   actions: {
     async loadUrls({state, commit}) {
       state.photos.forEach( async (photo, i) => {
-        const url = await firebase.storage.ref(photo.prefix).getDownloadURL();
+        const url = await firebase.storage.ref(photo.thumbPrefix).getDownloadURL();
+        const fullUrl = await firebase.storage.ref(photo.fullPrefix).getDownloadURL();
         commit('setPhotoUrl', {
           index: i,
-          url
-        })
+          url,
+          fullUrl
+        });
       });
     },
     async loadPhotos({commit, dispatch}, limit) {
@@ -37,7 +40,7 @@ const photos = {
 
       // add the metas
       snapshot.docs.forEach( async (doc) => {
-        commit("addPhotoMeta", doc);
+        commit("addPhoto", doc);
       });
 
       // load the urls
@@ -59,7 +62,7 @@ const photos = {
       
       snapshot.forEach( async (doc) => {
         // commit the meta
-        commit('addPhotoMeta', doc);
+        commit('addPhoto', doc);
       });
 
       dispatch('loadUrls');

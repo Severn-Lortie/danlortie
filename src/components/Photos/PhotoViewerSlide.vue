@@ -1,8 +1,8 @@
 <template>
   <v-carousel-item class="black" reverse-transition="none" transition="none">
-    <v-img :src="imageSrc" height="100%" contain>
+    <v-img :src="imageSrc" height="100%" v-if="ready" contain>
       <template v-slot:placeholder>
-        <image-progress />
+        <image-progress/>
       </template>
     </v-img>
   </v-carousel-item>
@@ -11,13 +11,11 @@
 <script>
 export default {
   props: {
-    imageSrc: String
+    imageSrc: String,
+    ready: Boolean
   },
   components: {
-    imageProgress: () => import("../core/AppImageProgress")
+    imageProgress: () => import('../core/AppImageProgress')
   }
 };
 </script>
-
-<style>
-</style>
