@@ -1,46 +1,41 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// views
-import Home from '../views/Home'
-import Obituary from '../views/Obituary.vue'
-import Photos from '../views/Photos'
-import Stories from '../views/Stories'
-import StoryViewer from '../views/StoryViewer'
-import Forum from '../views/Forum'
-import App404 from '../views/404'
-
 Vue.use(VueRouter)
 
   const routes = [
     {
       path: '/',
-      component: Home
+      component: () => import('../views/Home')
     },
     {
       path: '/obituary',
-      component: Obituary
+      component: () => import('../views/Obituary.vue')
     },
     {
       path: '/photos',
-      component: Photos
+      component: () => import('../views/Photos')
     },
     {
       path: '/stories',
-      component: Stories
+      component: () => import('../views/Stories')
     },
     {
       path: '/story/:id',
-      component: StoryViewer
+      component: () => import('../views/StoryViewer')
     },
     {
       path: '/submit',
-      component: Forum
+      component: () => import('../views/Forum')
+    },
+    {
+      path: '/remembrances',
+      component: () => import('../views/Remembrances')
     },
     // 404
     {
       path: '*',
-      component: App404
+      component: () => import('../views/404')
     }
   ];
 
