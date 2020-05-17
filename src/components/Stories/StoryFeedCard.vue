@@ -1,7 +1,7 @@
 <template>
   <v-card flat v-if="story">
     <v-sheet color="#272727" tile height="10" />
-    <v-card-title>{{ story.title }}</v-card-title>
+    <v-card-title class="word-break">{{ story.title }}</v-card-title>
     <v-card-subtitle>{{ story.author }}</v-card-subtitle>
     <v-card-text>
       <p v-line-clamp:30="3" class="pa-0 ma-0 word-break">{{ story.text }}</p>
