@@ -25,6 +25,6 @@ export default {
 
 <style scoped>
 .word-break {
-  word-break: keep-all;
+  word-break: keep-all !important;
 }
 </style>
