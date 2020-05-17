@@ -1,10 +1,13 @@
 <template>
   <v-card flat v-if="story">
-    <v-card-title>{{story.title}}</v-card-title>
-    <v-card-subtitle>{{story.author}}</v-card-subtitle>
-    <v-card-text>{{story.text.substring(0, 257).trim() + "..."}}</v-card-text>
+    <v-sheet color="#272727" tile height="10" />
+    <v-card-title>{{ story.title }}</v-card-title>
+    <v-card-subtitle>{{ story.author }}</v-card-subtitle>
+    <v-card-text>
+      <p v-line-clamp:30="3" class="pa-0 ma-0 word-break">{{ story.text }}</p>
+    </v-card-text>
     <v-card-actions>
-      <app-btn text :to="`/story/${story.id}`">Read More</app-btn>
+      <app-btn class="mt-2" text :to="`/story/${story.id}`">Read More</app-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -19,3 +22,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.word-break {
+  word-break: keep-all;
+}
+</style>
