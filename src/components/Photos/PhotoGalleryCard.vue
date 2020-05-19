@@ -9,10 +9,10 @@
   >
     <v-hover v-slot:default="{ hover }">
       <v-card flat tile @click.stop="$emit('clicked', meta.id)" :ripple="false">
-        <v-img :src="meta.photo.url" aspect-ratio="1">
-          <template v-slot:placeholder>
-            <image-progress />
-          </template>
+        <v-img :src="meta.photo.url" aspect-ratio="1" class="text-right">
+          <app-btn icon @clicked="$emit('clicked', meta.id)">
+            <v-icon color="rgba(255, 255, 255, 0.6)">mdi-card-search-outline</v-icon>
+          </app-btn>
           <card-subtitle
             :display="hover || $vuetify.breakpoint.mdAndDown"
             v-if="meta.photo.subtitle"
@@ -33,7 +33,7 @@ export default {
   },
   components: {
     cardSubtitle: () => import("./PhotoGalleryCardSubtitle"),
-    imageProgress: () => import("../core/AppImageProgress")
+    appBtn: () => import('../core/AppButton')
   }
 };
 </script>
