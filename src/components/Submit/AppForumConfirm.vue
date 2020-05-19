@@ -1,7 +1,7 @@
 <template>
 <v-dialog
     v-model="model"
-    :max-width="$vuetify.breakpoint.smAndDown ? '80%' : '50%'"
+    :max-width="$vuetify.breakpoint.smAndDown ? '90%' : '50%'"
 >
     <v-card>
         <v-card-title>Confirm your Submission</v-card-title>

@@ -1,5 +1,5 @@
 <template>
-<v-dialog v-model="model" max-width="80%">
+<v-dialog v-model="model" max-width="80%" :fullscreen="$vuetify.breakpoint.xs">
     <v-card>
         <v-card-title class="title">How does this work?</v-card-title>
         <v-expansion-panels flat>
