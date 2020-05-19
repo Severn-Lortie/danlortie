@@ -20,6 +20,7 @@ const firebaseConfig = {
   
   // collections 
   const stories = db.collection('stories');
+  const remembrances = db.collection('remembrances');
 
   // initalize 
   const storage = firebase.storage();
@@ -30,6 +31,7 @@ const firebaseConfig = {
     storage,
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     collections: {
-        stories
+        stories,
+        remembrances
     }
   }
