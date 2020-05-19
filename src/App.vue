@@ -25,9 +25,10 @@ export default {
     created() {
         this.$vuetify.theme.dark = true;
 
-        // load the first batch of photos and stories
+        // load the first batch of photos, stories, and remembrances
         this.$store.dispatch('loadPhotos', 20);
         this.$store.dispatch('loadStories', 6);
+        this.$store.dispatch('loadAllEmails');
     }
 };
 </script>
