@@ -22,9 +22,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.word-break {
-  word-break: keep-all !important;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="body-1 whitespace">
+  <div class="body-1 whitespace word-break">
       <vue-markdown>{{text}}</vue-markdown>
   </div>
 </template>
@@ -16,10 +16,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.whitespace {
-    white-space: pre-line;
-    word-wrap: break-word;
-}
-</style>

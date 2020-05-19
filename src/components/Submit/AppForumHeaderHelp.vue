@@ -41,8 +41,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.whitespace {
-    white-space: pre-line;
-}
-</style>

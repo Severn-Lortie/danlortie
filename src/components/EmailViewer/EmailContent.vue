@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid class="fill-height pa-0">
+  <v-container fluid class="fill-height pt-0">
     <v-row justify="center" align="start" class="fill-height" :class="{'mt-6': $vuetify.breakpoint.smAndUp}">
       <v-col cols="12" sm="10" md="7" lg="6" :class="{'pa-0': $vuetify.breakpoint.xs}">
-        <v-card height="100%" flat>
+        <v-card height="100%" flat class="pl-0 pr-0" :tile="$vuetify.breakpoint.xs">
           <v-img
             :src="email.url"
             height="400"
@@ -10,7 +10,7 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             class="align-end"
           >
-            <v-card-title class="text-capitalize display-1 font-weight-bold whitespace">
+            <v-card-title class="text-capitalize display-1 font-weight-bold word-break">
               {{ email.subject }}
             </v-card-title>
             <v-card-subtitle class="text-capitalize headline">
@@ -45,9 +45,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.whitespace {
-  word-break: keep-all !important;
-}
-</style>

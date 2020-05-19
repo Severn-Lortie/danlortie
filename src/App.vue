@@ -60,4 +60,12 @@ body {
   font-style: italic;
   font-weight: 400;
 }
+
+.word-break {
+  word-break: keep-all !important;
+}
+
+.whitespace {
+    white-space: pre-line;
+}
 </style>

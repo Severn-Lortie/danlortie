@@ -8,7 +8,7 @@
       <v-divider></v-divider>
     </v-card-subtitle>
     <v-card-text class="white--text">
-      <p v-line-clamp:30="2" class="whitespace">{{ email.text.trim() }}</p>
+      <p v-line-clamp:30="2" class="word-break">{{ email.text.trim() }}</p>
     </v-card-text>
     <v-card-actions>
       <app-btn text :to="`view/remembrance/${email.id}`">Read More</app-btn>
@@ -26,9 +26,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.whitespace {
-  word-break: keep-all !important;
-}
-</style>

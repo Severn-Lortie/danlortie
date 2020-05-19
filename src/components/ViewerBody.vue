@@ -1,7 +1,7 @@
 <template>
   <div class="body-1 whitespace">
       <!-- main text slot -->
-      <vue-markdown class="whitespace" :source="source" />
+      <vue-markdown class="whitespace word-wrap" :source="source" />
   </div>
 </template>
 
@@ -16,9 +16,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.whitespace {
-    white-space: pre-line;
-    word-wrap: break-word;
-}
-</style>
