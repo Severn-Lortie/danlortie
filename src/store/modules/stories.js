@@ -11,16 +11,17 @@ const stories = {
       text: '',
     },
   }),
-
   mutations: {
     addStories(state, snapshot) {
+      // set the last doc for the next pagniated fetch
+      state.lastDoc = snapshot.docs[snapshot.docs.length - 1];
       snapshot.forEach((doc) => {
-        state.lastDoc = doc;
         // attach the id to the doc
         const docData = doc.data();
         docData.id = doc.id;
         Vue.set(state.stories, doc.id, docData);
       });
+     
     },
     setStatus(state, status) {
       // stores the result of the last fetch
@@ -70,7 +71,7 @@ const stories = {
         .startAfter(state.lastDoc)
         .limit(limit)
         .get();
-
+      
       // return empty if no docs
       if (snapshot.empty) {
         return {

@@ -8,10 +8,6 @@
 export default {
   components: {
     storyFeed: () => import("../components/Stories/StoryFeed")
-  },
-  created() {
-    // initally load five stories
-    this.$store.dispatch("loadStories", 5);
   }
 };
 </script>

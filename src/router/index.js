@@ -21,8 +21,8 @@ const routes = [
         component: () => import('../views/Stories'),
     },
     {
-        path: '/story/:id',
-        component: () => import('../views/StoryViewer'),
+        path: '/view/:type/:id',
+        component: () => import('../views/FeedViewer'),
     },
     {
         path: '/submit',
