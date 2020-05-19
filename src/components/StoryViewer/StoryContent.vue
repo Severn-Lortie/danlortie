@@ -2,7 +2,7 @@
   <v-container class="fill-height">
     <v-row justify="center" align="start">
       <v-col cols="12" md="7" lg="6" class="text-left">
-        <story-viewer-header class="mt-4">
+        <story-viewer-header>
           <template v-slot:title>
             {{ story.title }}
           </template>

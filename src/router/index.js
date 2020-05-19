@@ -23,6 +23,9 @@ const routes = [
     {
         path: '/view/:type/:id',
         component: () => import('../views/FeedViewer'),
+        meta: {
+            scrollToTop: true
+        }
     },
     {
         path: '/submit',
@@ -42,6 +45,13 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     routes,
+    scrollBehavior (to, from, savedPosition) { // eslint-disable-line
+        if (to.meta.scrollToTop) {
+            return { x: 0, y: 0 };
+        } else {
+            return savedPosition;
+        }
+    }
 });
 
 export default router;
