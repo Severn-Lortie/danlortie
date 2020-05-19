@@ -1,5 +1,5 @@
 <template>
-  <v-card flat v-if="story">
+  <v-card v-if="story">
     <v-sheet color="#272727" tile height="10" />
     <v-card-title class="word-break">{{ story.title }}</v-card-title>
     <v-card-subtitle>{{ story.author }}</v-card-subtitle>
@@ -7,7 +7,7 @@
       <p v-line-clamp:30="3" class="pa-0 ma-0 word-break">{{ story.text }}</p>
     </v-card-text>
     <v-card-actions>
-      <app-btn class="mt-2" text :to="`/story/${story.id}`">Read More</app-btn>
+      <app-btn class="mt-2" text :to="`/view/story/${story.id}`">Read More</app-btn>
     </v-card-actions>
   </v-card>
 </template>
