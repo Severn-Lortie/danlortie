@@ -9,6 +9,7 @@
     >
         <v-col
             md="10"
+            lg="9"
             cols="11"
         >
             <v-row
