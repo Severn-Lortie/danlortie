@@ -49,7 +49,7 @@ const stories = {
     async loadStories({ commit }, limit) {
       // get the newest stories
       const snapshot = await firestore.collections.stories
-        .orderBy("timestamp")
+        .orderBy("timestamp", "desc")
         .limit(limit)
         .get();
       commit("addStories", snapshot);
@@ -67,7 +67,7 @@ const stories = {
     async loadNextStories({ commit, state }, limit) {
       // load up to five documents, starting at the most recently added one
       const snapshot = await firestore.collections.stories
-        .orderBy("timestamp")
+        .orderBy("timestamp", "desc")
         .startAfter(state.lastDoc)
         .limit(limit)
         .get();
